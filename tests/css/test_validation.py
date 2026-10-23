@@ -1352,6 +1352,38 @@ def test_color_scheme_invalid(rule):
     assert_invalid(f'color-scheme: {rule}')
 
 
+
+@assert_no_logs
+@pytest.mark.parametrize('keyword', ['economy', 'exact'])
+def test_print_color_adjust(keyword):
+    assert get_value(f'print-color-adjust: {keyword}') == keyword
+
+
+@assert_no_logs
+@pytest.mark.parametrize('rule', [
+    'auto',
+    'blue',
+    '1',
+    'exact economy',
+])
+def test_print_color_adjust_invalid(rule):
+    assert_invalid(f'print-color-adjust: {rule}')
+
+
+@assert_no_logs
+def test_print_color_adjust_inheritance():
+    page, = render_pages('''
+      <style>body { print-color-adjust: exact }</style>
+      <body><p>a</p></body>
+    ''')
+    html, = page.children
+    body, = html.children
+    paragraph, = body.children
+    assert html.style['print_color_adjust'] == 'economy'
+    assert body.style['print_color_adjust'] == 'exact'
+    assert paragraph.style['print_color_adjust'] == 'exact'
+
+
 @assert_no_logs
 @pytest.mark.parametrize(('rule', 'value'), [
     ('none', ()),

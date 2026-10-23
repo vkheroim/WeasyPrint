@@ -92,6 +92,7 @@ INITIAL_VALUES = {
 
     # Color Adjustment 1 (CRD): https://www.w3.org/TR/css-color-adjust-1
     'color_scheme': 'normal',
+    'print_color_adjust': 'economy',
 
     # Color 3 (REC): https://www.w3.org/TR/css-color-3/
     'opacity': 1,
@@ -344,6 +345,7 @@ INHERITED = {
     'list_style_type',
     'orphans',
     'overflow_wrap',
+    'print_color_adjust',
     'quotes',
     'tab_size',
     'text_align_all',
