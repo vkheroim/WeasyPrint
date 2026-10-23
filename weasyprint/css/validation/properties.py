@@ -2133,6 +2133,13 @@ def appearance(token):
 
 
 @property()
+@single_keyword
+def print_color_adjust(keyword):
+    """``print-color-adjust`` property validation."""
+    return keyword in ('economy', 'exact')
+
+
+@property()
 def color_scheme(tokens):
     """``color-scheme`` property validation."""
     if len(tokens) == 1:
